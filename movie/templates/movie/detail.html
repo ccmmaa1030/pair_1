@@ -1,82 +1,49 @@
 {% extends 'base.html' %} {% block content %}
+
 <div class="d-flex flex-column align-items-center">
-  <div class="w-75 p-4 pb-0 d-flex flex-column align-items-center">
-    <h4 class="w-75 p-2 mb-0">제목 : {{ review.title}}</h4>
+  <div class="w-100 p-4 pb-0 d-flex flex-column align-items-center">
+    <h4 class="w-75 p-2 mb-0">제목 : {{ review.title}}
+    </h4>
   </div>
-  <div class="w-75 p-4 d-flex flex-column align-items-center bg-light">
+  <div class="w-100 p-4 d-flex flex-column align-items-center">
     <h4 class="w-75 p-2">내용</h4>
     <p class="border border-dark bg-light rounded w-75 p-2">
       {{ review.content }}
     </p>
   </div>
-  <a
-    class="btn btn-primary btn-sm"
-    href="{% url 'movie:edit' review.id %}"
-    data-bs-toggle="modal"
-    data-bs-target="#modal{{ review.id }}"
-    data-bs-whatever="@mdo"
-    ><i class="bi bi-pencil-fill"></i
-  ></a>
-  <div
-    class="modal fade"
-    id="modal{{ review.id }}"
-    tabindex="-1"
-    aria-labelledby="modal{{ review.id }}Label"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">리뷰 수정</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form action="{% url 'movie:update' review.id %}">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"
-                >제목</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput1"
-                name="title"
-                value="{{ review.title }}"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label"
-                >내용</label
-              >
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-                name="content"
-              >
-{{ review.content }}</textarea
-              >
-            </div>
-            <div class="d-grid">
-              <input
-                type="submit"
-                class="btn btn-outline-primary"
-                value="리뷰 수정"
-                id="bt"
-              />
-            </div>
-          </form>
+  <div class="w-75 p-4 d-flex justify-content-end">
+    <a class="btn btn-dark" href="{% url 'movie:edit' review.id %}" data-bs-toggle="modal"
+      data-bs-target="#modal{{ review.id }}" data-bs-whatever="@mdo">리뷰 수정</a>
+    <div class="modal fade" id="modal{{ review.id }}" tabindex="-1" aria-labelledby="modal{{ review.id }}Label">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">리뷰 수정</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="{% url 'movie:update' review.id %}">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">제목</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="title"
+                  value="{{ review.title }}" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">
+{{ review.content }}</textarea>
+              </div>
+              <div class="d-grid">
+                <input type="submit" class="btn btn-dark" value="리뷰 수정" id="bt" />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    &nbsp;
+    <a class="btn btn-dark" href="{% url 'movie:delete' review.id %}">리뷰 삭제</a>
   </div>
-  <a class="btn btn-danger btn-sm" href="{% url 'movie:delete' review.id %}"
-    ><i class="bi bi-x-square-fill"></i
-  ></a>
 </div>
 
 {% endblock %}
