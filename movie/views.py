@@ -13,3 +13,10 @@ def index(request):
 
 def new(request):
     return render(request, 'movie/new.html')
+
+def create(request):
+    title = request.GET.get('title')
+    content = request.GET.get('content')
+
+    Review.objects.create(content=content, title=title)
+    return redirect('movie:index')
