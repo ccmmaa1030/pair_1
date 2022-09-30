@@ -39,7 +39,7 @@ def edit(request, pk):
     context = {
         "review": review,
     }
-    return render(request, 'movie/edit.html', context)
+    return render(request, 'movie/detail.html', context)
 
 def update(request, pk):
     review = Review.objects.get(id=pk)
